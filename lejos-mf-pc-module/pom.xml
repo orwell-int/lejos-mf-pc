@@ -33,6 +33,43 @@
 	<build>
 		<plugins>
 			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-install-plugin</artifactId>
+				<version>2.5.2</version>
+				<executions>
+					<execution>
+						<id>install-jar-lib-pccomm</id>
+						<goals>
+							<goal>install-file</goal>
+						</goals>
+						<phase>validate</phase>
+						<configuration>
+							<groupId>lejos.pc</groupId>
+							<artifactId>pccomm</artifactId>
+							<version>0.9.1beta-3</version>
+							<packaging>jar</packaging>
+							<file>${NXJ_HOME}/lib/pc/pccomm.jar</file>
+							<generatePom>true</generatePom>
+						</configuration>
+					</execution>
+					<execution>
+						<id>install-jar-lib-pctools</id>
+						<goals>
+							<goal>install-file</goal>
+						</goals>
+						<phase>validate</phase>
+						<configuration>
+							<groupId>lejos.pc</groupId>
+							<artifactId>pctools</artifactId>
+							<version>0.9.1beta-3</version>
+							<packaging>jar</packaging>
+							<file>${NXJ_HOME}/lib/pc/pctools.jar</file>
+							<generatePom>true</generatePom>
+						</configuration>
+					</execution>
+				</executions>
+			</plugin>
+			<plugin>
 				<artifactId>maven-plugin-plugin</artifactId>
 				<version>2.3</version>
 				<configuration>
