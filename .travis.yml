@@ -18,5 +18,7 @@ notifications:
 env: 
 - NXJ_HOME=leJOS_NXJ_0.9.1beta-3
 install: 
+- mvn install:install-file -Dfile=$NXJ_HOME/lib/pc/pctools.jar -DgroupId=lejos.pc -DartifactId=pctools -Dversion=0.9.1beta-3 -Dpackaging=jar
+- mvn install:install-file -Dfile=$NXJ_HOME/lib/pc/pccomm.jar -DgroupId=lejos.pc -DartifactId=pccomm -Dversion=0.9.1beta-3 -Dpackaging=jar
 - mvn validate -q
 - mvn clean install
