@@ -67,6 +67,21 @@
 							<generatePom>true</generatePom>
 						</configuration>
 					</execution>
+					<execution>
+						<id>install-jar-lib-bluecove</id>
+						<goals>
+							<goal>install-file</goal>
+						</goals>
+						<phase>validate</phase>
+						<configuration>
+							<groupId>lejos.pc.3rdparty</groupId>
+							<artifactId>bluecove</artifactId>
+							<version>0.9.1beta-3</version>
+							<packaging>jar</packaging>
+							<file>${NXJ_HOME}/lib/pc/3rdparty/bluecove.jar</file>
+							<generatePom>true</generatePom>
+						</configuration>
+					</execution>
 				</executions>
 			</plugin>
 			<plugin>
