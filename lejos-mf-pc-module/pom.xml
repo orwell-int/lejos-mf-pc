@@ -25,6 +25,11 @@
 			<version>0.9.1beta-3</version>
 		</dependency>
 		<dependency>
+			<groupId>lejos.pc.3rdparty</groupId>
+			<artifactId>bluecove</artifactId>
+			<version>0.9.1beta-3</version>
+		</dependency>
+		<dependency>
 			<groupId>org.slf4j</groupId>
 			<artifactId>slf4j-api</artifactId>
 			<version>1.7.7</version>
