@@ -18,7 +18,7 @@ import javax.swing.JTextArea;
 import lejos.pc.comm.NXTCommFactory;
 import lejos.pc.comm.NXTInfo;
 import lejos.mf.common.MessageListenerInterface;
-import lejos.mf.common.UnitMessage;
+import lejos.mf.common.StreamUnitMessage;
 import lejos.mf.common.UnitMessageType;
 
 public class MessageFrameworkTester implements MessageListenerInterface {
@@ -114,7 +114,7 @@ public class MessageFrameworkTester implements MessageListenerInterface {
 
 		StopButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent ae) {
-				UnitMessage msg = new UnitMessage(UnitMessageType.Command,
+				StreamUnitMessage msg = new StreamUnitMessage(UnitMessageType.Command,
 						"stop");
 				// m_mfBobomb.SendMessage(msg);
 				m_mfDaneel.SendMessage(msg);
@@ -124,7 +124,7 @@ public class MessageFrameworkTester implements MessageListenerInterface {
 
 		ForwardButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent ae) {
-				UnitMessage msg = new UnitMessage(UnitMessageType.Command,
+				StreamUnitMessage msg = new StreamUnitMessage(UnitMessageType.Command,
 						"forward");
 				// m_mfBobomb.SendMessage(msg);
 				m_mfDaneel.SendMessage(msg);
@@ -134,7 +134,7 @@ public class MessageFrameworkTester implements MessageListenerInterface {
 
 		BackwardButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent ae) {
-				UnitMessage msg = new UnitMessage(UnitMessageType.Command,
+				StreamUnitMessage msg = new StreamUnitMessage(UnitMessageType.Command,
 						"backward");
 				// m_mfBobomb.SendMessage(msg);
 				m_mfDaneel.SendMessage(msg);
@@ -144,7 +144,7 @@ public class MessageFrameworkTester implements MessageListenerInterface {
 
 		LeftButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent ae) {
-				UnitMessage msg = new UnitMessage(UnitMessageType.Command,
+				StreamUnitMessage msg = new StreamUnitMessage(UnitMessageType.Command,
 						"left");
 				// m_mfBobomb.SendMessage(msg);
 				m_mfDaneel.SendMessage(msg);
@@ -154,7 +154,7 @@ public class MessageFrameworkTester implements MessageListenerInterface {
 
 		RightButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent ae) {
-				UnitMessage msg = new UnitMessage(UnitMessageType.Command,
+				StreamUnitMessage msg = new StreamUnitMessage(UnitMessageType.Command,
 						"right");
 				// m_mfBobomb.SendMessage(msg);
 				m_mfDaneel.SendMessage(msg);
@@ -188,7 +188,7 @@ public class MessageFrameworkTester implements MessageListenerInterface {
 	}
 
 	@Override
-	public void receivedNewMessage(UnitMessage msg) {
-		System.out.println("Received: " + new String(msg.getEncodedMsg()));
+	public void receivedNewMessage(StreamUnitMessage msg) {
+		System.out.println("Received: " + new String(msg.getEncodedMessage()));
 	}
 }

@@ -13,7 +13,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import lejos.mf.common.MessageListenerInterface;
-import lejos.mf.common.UnitMessage;
+import lejos.mf.common.StreamUnitMessage;
 
 public class MessageFramework {
 	
@@ -75,10 +75,10 @@ public class MessageFramework {
 		return m_connected;
 	}
 
-	public void SendMessage(UnitMessage msg) {
+	public void SendMessage(StreamUnitMessage msg) {
 		try // handshake
 		{
-			byte[] outgoing = msg.getEncodedMsg();
+			byte[] outgoing = msg.getEncodedMessage();
 
 			m_os.write(outgoing);
 			m_os.flush();
@@ -110,7 +110,7 @@ public class MessageFramework {
 
 						// Check if this is a packet frame end <ETX>
 						if (input == (byte) 3) // ETX
-							RecievedNewPacket();
+							ReceivedNewPacket();
 					}
 					close();
 
@@ -126,7 +126,7 @@ public class MessageFramework {
 		}
 	}
 
-	private void RecievedNewPacket() {
+	private void ReceivedNewPacket() {
 		byte[] msgBytes = new byte[m_receivedBytes.size()];
 		for (int i = 0; i < m_receivedBytes.size(); i++) {
 			msgBytes[i] = m_receivedBytes.get(i);
@@ -137,7 +137,7 @@ public class MessageFramework {
 		// only create and transmit the message if it is valid
 		if (isPacketValid(msgBytes)) {
 			synchronized (m_RXguard) {
-				UnitMessage msg = UnitMessage.setEncodedMsg(msgBytes);
+				StreamUnitMessage msg = StreamUnitMessage.setEncodedMessage(msgBytes);
 				for (int j = 0; j < m_messageListeners.size(); j++) {
 					m_messageListeners.get(j).receivedNewMessage(msg);
 				}
