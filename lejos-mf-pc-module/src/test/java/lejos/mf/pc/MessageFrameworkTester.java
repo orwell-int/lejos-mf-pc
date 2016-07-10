@@ -15,6 +15,7 @@ import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTextArea;
 
+import lejos.mf.common.UnitMessage;
 import lejos.pc.comm.NXTCommFactory;
 import lejos.pc.comm.NXTInfo;
 import lejos.mf.common.MessageListenerInterface;
@@ -42,28 +43,8 @@ public class MessageFrameworkTester implements MessageListenerInterface {
 	protected static String title = "NXJHost";
 	protected boolean m_btOpen = false;
 
-	// protected NXTInfo m_info = new NXTInfo(NXTCommFactory.BLUETOOTH, "NXT",
-	// "001653007B78"); //School "00165309782B"
-	// protected NXTInfo m_info = new NXTInfo(NXTCommFactory.BLUETOOTH, "Freja",
-	// "001653099CE9"); //School "00165309782B"
-	// protected NXTInfo m_info = new NXTInfo(NXTCommFactory.BLUETOOTH, "ole",
-	// "00165309782B");
-
-	// protected NXTInfo m_nxtInfo = new NXTInfo(NXTCommFactory.BLUETOOTH,
-	// "NXT", "001653099CE9");
-	// protected NXTInfo m_bobombinfo = new NXTInfo(NXTCommFactory.BLUETOOTH,
-	// "Bob-omb", "0016530ADB02");
 	protected NXTInfo m_daneelInfo = new NXTInfo(NXTCommFactory.BLUETOOTH,
 			"Daneel", "001653119482");
-
-	// public static String nameBrickCounterTerrorist = "NXT";
-	// public static String macBrickCounterTerrorist = "001653099CE9";
-	//
-	// public static String nameBrickBomb = "Bomb";
-	// public static String macBrickBomb = "00165308D0DD";
-
-	// public static String nameBrickBomb = "Bob-omb";
-	// public static String macBrickBomb = "0016530ADB02";
 
 	public static void main(String args[]) {
 		try {
@@ -77,20 +58,9 @@ public class MessageFrameworkTester implements MessageListenerInterface {
 	}
 
 	public MessageFrameworkTester() {
-		// m_mfBobomb = new MessageFramework();
-		// m_mfBobomb.addMessageListener(this);
-		// m_mfBobomb.ConnectToNXT(m_bobombinfo);
-
 		m_mfDaneel = new MessageFramework();
 		m_mfDaneel.addMessageListener(this);
 		m_mfDaneel.ConnectToNXT(m_daneelInfo);
-
-		// m_mfNxt = new MessageFramework();
-		// m_mfNxt.addMessageListener(this);
-		// m_mfNxt.ConnectToNXT(m_nxtInfo);
-
-		// LIMessage msg = new LIMessage(LIMessageType.Command, "Hello World");
-		// MessageFramwork.getInstance().SendMessage( msg );
 	}
 
 	public void run(String[] args) {
@@ -103,9 +73,7 @@ public class MessageFrameworkTester implements MessageListenerInterface {
 
 		WindowListener listener = new WindowAdapter() {
 			public void windowClosing(WindowEvent w) {
-				// m_mfBobomb.close();
 				m_mfDaneel.close();
-				// m_mfNxt.close();
 				System.exit(0);
 			}
 		};
@@ -116,9 +84,7 @@ public class MessageFrameworkTester implements MessageListenerInterface {
 			public void actionPerformed(ActionEvent ae) {
 				StreamUnitMessage msg = new StreamUnitMessage(UnitMessageType.Command,
 						"stop");
-				// m_mfBobomb.SendMessage(msg);
 				m_mfDaneel.SendMessage(msg);
-				// m_mfNxt.SendMessage(msg);
 			}
 		});
 
@@ -126,9 +92,7 @@ public class MessageFrameworkTester implements MessageListenerInterface {
 			public void actionPerformed(ActionEvent ae) {
 				StreamUnitMessage msg = new StreamUnitMessage(UnitMessageType.Command,
 						"forward");
-				// m_mfBobomb.SendMessage(msg);
 				m_mfDaneel.SendMessage(msg);
-				// m_mfNxt.SendMessage(msg);
 			}
 		});
 
@@ -136,9 +100,7 @@ public class MessageFrameworkTester implements MessageListenerInterface {
 			public void actionPerformed(ActionEvent ae) {
 				StreamUnitMessage msg = new StreamUnitMessage(UnitMessageType.Command,
 						"backward");
-				// m_mfBobomb.SendMessage(msg);
 				m_mfDaneel.SendMessage(msg);
-				// m_mfNxt.SendMessage(msg);
 			}
 		});
 
@@ -146,9 +108,7 @@ public class MessageFrameworkTester implements MessageListenerInterface {
 			public void actionPerformed(ActionEvent ae) {
 				StreamUnitMessage msg = new StreamUnitMessage(UnitMessageType.Command,
 						"left");
-				// m_mfBobomb.SendMessage(msg);
 				m_mfDaneel.SendMessage(msg);
-				// m_mfNxt.SendMessage(msg);
 			}
 		});
 
@@ -156,9 +116,7 @@ public class MessageFrameworkTester implements MessageListenerInterface {
 			public void actionPerformed(ActionEvent ae) {
 				StreamUnitMessage msg = new StreamUnitMessage(UnitMessageType.Command,
 						"right");
-				// m_mfBobomb.SendMessage(msg);
 				m_mfDaneel.SendMessage(msg);
-				// m_mfNxt.SendMessage(msg);
 			}
 		});
 
@@ -188,7 +146,7 @@ public class MessageFrameworkTester implements MessageListenerInterface {
 	}
 
 	@Override
-	public void receivedNewMessage(StreamUnitMessage msg) {
-		System.out.println("Received: " + new String(msg.getEncodedMessage()));
+	public void receivedNewMessage(UnitMessage msg) {
+		System.out.println("Received: " + msg);
 	}
 }
